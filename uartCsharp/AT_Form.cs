@@ -43,14 +43,14 @@ namespace uartCsharp
 
             Invoke((MethodInvoker)delegate
             {
-                string str = serialPort.ReadExisting();
+                string str = serialPort.ReadLine();
                 try
                 {
                     if (str.Length > 0)
                     {
                         if (latest_client != null)
                         {
-                            latest_client.Send(Encoding.ASCII.GetBytes(str));
+                            latest_client.Send(Encoding.ASCII.GetBytes(str+"\n"));
                             displayStatus("Sent Response");
                         }
                         else
