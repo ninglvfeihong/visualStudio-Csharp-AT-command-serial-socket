@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATSereverCsharp", "uartCsharp\ATSereverCsharp.csproj", "{4324AD3C-59E3-4C23-BC6B-2B67AAE73FA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "socketServer", "socketServer\socketServer.csproj", "{9DBF244C-590D-46DD-AABF-B36C5EE1B2AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4324AD3C-59E3-4C23-BC6B-2B67AAE73FA1}.Debug|x86.ActiveCfg = Debug|x86
+		{4324AD3C-59E3-4C23-BC6B-2B67AAE73FA1}.Debug|x86.Build.0 = Debug|x86
+		{4324AD3C-59E3-4C23-BC6B-2B67AAE73FA1}.Release|x86.ActiveCfg = Release|x86
+		{4324AD3C-59E3-4C23-BC6B-2B67AAE73FA1}.Release|x86.Build.0 = Release|x86
+		{9DBF244C-590D-46DD-AABF-B36C5EE1B2AB}.Debug|x86.ActiveCfg = Debug|x86
+		{9DBF244C-590D-46DD-AABF-B36C5EE1B2AB}.Debug|x86.Build.0 = Debug|x86
+		{9DBF244C-590D-46DD-AABF-B36C5EE1B2AB}.Release|x86.ActiveCfg = Release|x86
+		{9DBF244C-590D-46DD-AABF-B36C5EE1B2AB}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
