@@ -21,6 +21,7 @@ namespace uartCsharp
         private const int bufferLength = 512;
         private int client_counter = 0;
         private Socket latest_client=null;
+        private string serial_pre_remain="";
         public AT_Form()
         {
             InitializeComponent();
@@ -43,21 +44,39 @@ namespace uartCsharp
 
             Invoke((MethodInvoker)delegate
             {
-                string str = serialPort.ReadLine();
+                string str = serialPort.ReadExisting();
                 try
                 {
-                    if (str.Length > 0)
+                    while (true)
                     {
-                        if (latest_client != null)
+                        if (str.Length > 0)
                         {
-                            latest_client.Send(Encoding.ASCII.GetBytes(str+"\n"));
-                            displayStatus("Sent Response");
+                            int npos = str.IndexOf('\n');
+                            if (npos == -1)
+                            {
+                                //not find
+                                this.serial_pre_remain = this.serial_pre_remain + str;
+                                break;
+                            }
+                            else
+                            {
+                                string strline = this.serial_pre_remain + str.Substring(0, npos + 1);
+                                this.serial_pre_remain = "";
+                                str = str.Substring(npos + 1);
+                                if (latest_client != null)
+                                {
+                                    latest_client.Send(Encoding.ASCII.GetBytes(strline));
+                                    displayStatus(">" + strline.TrimEnd('\n'));
+                                }
+                                else
+                                {
+                                    //displayStatus("Sent Response Error:no client");
+                                    displayStatus(strline.TrimEnd('\n'));
+                                }
+
+                            }
                         }
-                        else
-                        {
-                            displayStatus("Sent Response Error:no client");
-                            displayStatus("Msg: " + str);
-                        }
+                        else break;
                     }
                 }
                 catch
