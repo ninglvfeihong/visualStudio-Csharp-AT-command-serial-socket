@@ -173,8 +173,8 @@ namespace uartCsharp
                 socket.BeginAccept(bufferLength, new AsyncCallback(acceptedCallBack), null);
 
                 btn_Socket_Open.Enabled = false;
-                text_Sock_Addr.Text = GetIP() + ": "+port;
-                tool_Sock_Address.Text = text_Sock_Addr.Text;
+                text_Sock_Addr.Text = GetIPport(port);
+                tool_Sock_Address.Text = "0.0.0.0:" + port;
                 tool_COM_Status.Value += 50;
                 displayStatus("waiting for client...");
             }
@@ -241,18 +241,25 @@ namespace uartCsharp
                 });
             }
         }
-        public string GetIP()
+        public string GetIPport(int port)
         {
             string hostName = System.Net.Dns.GetHostName();
             IPAddress[] addrs = System.Net.Dns.GetHostAddresses(hostName);
+            string IPports="";
             foreach (IPAddress i in addrs)
             {
                 if (i.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    return i.ToString();
+                    IPports =  IPports + i.ToString()+":"+port +"\n";
                 }
             }
-            return "127.0.0.1";
+            if(IPports.Length == 0)
+            {
+                return "127.0.0.1"+":"+port;
+            }else
+            {
+                return IPports;
+            }
         }
 
         private void btn_Socket_Open_Click(object sender, EventArgs e)
